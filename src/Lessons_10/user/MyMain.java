@@ -1,6 +1,6 @@
 package Lessons_10.user;
 
-public class MyMain {
+class MyMain {
     public static void main(String[] args) {
         User userA = new User("Alex", 29, 1, 2, 3, 4, 5);
         User[] users = new User[] {
