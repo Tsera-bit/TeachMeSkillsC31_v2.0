@@ -10,7 +10,8 @@ class MyMain {
         //task2OrderedString(inputString());
         //task3ShorterThanAverageLength(inputString());
         //task4WordSearch(inputString());
-        task5DoubleLettersInWord(new Scanner(System.in).nextLine());
+        //task5DoubleLettersInWord(new Scanner(System.in).nextLine());
+        taskStarPalindrome();
     }
     // ввод строк в консоль
     static String[] inputString() {
@@ -113,5 +114,34 @@ class MyMain {
             doubleLetters += letter + "" + letter;
         }
         System.out.println(doubleLetters);
+    }
+    // поиск среди строки слов палиндромов
+    static void taskStarPalindrome() {
+        System.out.print("Введите строку: ");
+        String palindrome = new Scanner(System.in).nextLine();
+        String[] word = palindrome.split("[,:;\\s]+");
+        int number = 0;
+        do {
+            System.out.print("выберите слово по счёту для проверки на палиндром: ");
+            number = new Scanner(System.in).nextInt();
+            if (number > word.length || number == 0) {
+                System.out.println("число не должно превышать \"" + word.length + "\" или равняться \"0\"");
+            }
+        } while(number > word.length || number == 0);
+        int check = 0;
+        char[] charArray = word[number - 1].toCharArray();
+        for (int counter = 0, backward = charArray.length - 1;
+             counter < charArray.length / 2; counter++, backward--) {
+            if(charArray[counter] != charArray[backward]) {
+                check = 0;
+                break;
+            }
+            check = 1;
+        }
+        if (check == 1) {
+            System.out.println("слово \"" + word[number-1] + "\" под номеров \"" + number + "\" является палиндромом");
+        } else {
+            System.out.println("слово \"" + word[number-1] + "\" под номеров \"" + number + "\" не является палиндромом");
+        }
     }
 }
