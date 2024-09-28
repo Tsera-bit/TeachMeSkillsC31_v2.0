@@ -55,12 +55,12 @@ public class DocumentAndContract {
     // Возвращает причину, по которой документ невалиден
     static String getInvalidReason(String document) {
         if (!document.startsWith("docnum") && !document.startsWith("contract")) {
-            return "Документ должен начинаться с 'docnum' или 'contract'";
+            return " Документ должен начинаться с 'docnum' или 'contract'";
         }
         if (document.length() != 15) {
-            return "Длина документа должна быть ровно 15 символов";
+            return " Длина документа должна быть ровно 15 символов";
         }
-        return "Не соответствует формату документа";
+        return " Не соответствует формату документа";
     }
     // записываем в указанный файл переданное сообщение
     static void setFileWrite(String message, File file) {
