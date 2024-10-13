@@ -2,13 +2,16 @@ package lessons_16.homework;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
-public class MyMain {
+class MyMain {
     public static void main(String[] args) {
         // task 1 -------------------------------------------------------------
         System.out.println(mapStrings(new String[]{"a", "b", "a", "c", "b"}));
         // task 2 -------------------------------------------------------------
         System.out.println(mapFirstLastLatter(new String[]{"man", "moon", "good", "night"}));
+        // task star ----------------------------------------------------------
+        taskStarBalance();
     }
     static Map<String, Boolean> mapStrings(String[] inputString) {
         // Проверка на пустой массив или null
@@ -40,6 +43,39 @@ public class MyMain {
             }
         }
         return stringMap;
+    }
+    // Я до конца не понял как делать это через словарь или очередь.
+    // + я сразу зацепился что мне проще сделать так, и уже не смог отпустить
+    static void taskStarBalance() {
+        // Вводим строку после методом удаляем всё содержимое кроме строк
+        System.out.print("Введите строку: ");
+        String text = new Scanner(System.in).nextLine();
+        String brackets = removeNonBrackets(text);
+        int check = 0;
+        // простая проверки на чётность, что-бы лишний раз не тратить ресурсы
+        if (brackets.length() % 2 == 0) {
+            char[] charArray = brackets.toCharArray();
+            // проверка на соответствие скобок
+            for (int counter = 0, backward = charArray.length - 1;
+                 counter < charArray.length / 2; counter++, backward--) {
+                if (!((charArray[counter] == '(' && charArray[backward] == ')') ||
+                        (charArray[counter] == '[' && charArray[backward] == ']') ||
+                        (charArray[counter] == '{' && charArray[backward] == '}'))) {
+                    check = 0;
+                    break;
+                }
+                check = 1;
+            }
+        }
+        if (check == 1) {
+            System.out.println(brackets + "- сбалансированы");
+        } else {
+            System.out.println(brackets + "- не сбалансирована");
+        }
+    }
+    // Удаляем все, кроме скобок
+    static String removeNonBrackets(String input) {
+        return input.replaceAll("[^()\\[\\]{}]", "");
     }
 }
 
