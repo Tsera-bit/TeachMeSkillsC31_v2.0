@@ -1,8 +1,7 @@
 package lessons_18.homework;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MyMain {
     public static void main(String[] args) {
@@ -15,5 +14,25 @@ public class MyMain {
                 .mapToInt(Integer::intValue)
                 .sum());
         // task 2 -----------------------------------------------------------------
+        Map<Integer, String> myMap = new HashMap<>(Map.of(
+                1, "Alex",
+                2, "Anna",
+                3, "James",
+                5, "Mary",
+                7, "John",
+                9, "Linda",
+                10, "David",
+                11, "William"
+        ));
+        System.out.println(mySorted(myMap));
+
+    }
+    static List<String> mySorted (Map<Integer, String> myMap) {
+        List<Integer> keys = List.of(1, 2, 5, 8, 9, 13);
+        return myMap.entrySet().stream()
+                .filter(id -> keys.contains(id.getKey()))
+                .filter(name -> name.getValue().length() % 2 != 0)
+                .map(name -> new StringBuilder(name.getValue()).reverse().toString())
+                .collect(Collectors.toList());
     }
 }
