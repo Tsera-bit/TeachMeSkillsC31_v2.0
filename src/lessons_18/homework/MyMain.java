@@ -35,4 +35,5 @@ public class MyMain {
                 .map(name -> new StringBuilder(name.getValue()).reverse().toString())
                 .collect(Collectors.toList());
     }
+
 }
